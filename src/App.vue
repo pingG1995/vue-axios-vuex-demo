@@ -1,32 +1,27 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <el-container>
+        <!-- 头部区域 -->
+        <el-header class="header" height="100px">
+          <h2>Vue登录模块</h2>
+          <h4>路 由 配 置 登 录 跳 转</h4>
+        </el-header>
+        <!-- 主区域 -->
+        <el-main>
+          <router-view/>
+        </el-main>
+      </el-container>
   </div>
 </template>
-
+<script>
+import 'element-ui/lib/theme-chalk/index.css'
+export default {
+  
+}
+</script>
 <style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+ .header{
+    background-color: #409EFF;
+    color: white;
   }
-}
 </style>
