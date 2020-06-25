@@ -3,7 +3,7 @@
     <h1>主页面</h1>
     <span>欢迎你:</span>
     <span v-if="user">
-      <span>{{this.$store.getters.getName}}</span>
+      <span>{{user.name}}</span>
       <el-button size="small" type="warning" @click="logout">注销</el-button>
     </span>
     <el-button v-else size="small" type="primary" @click="login">登陆</el-button>
@@ -12,17 +12,16 @@
 
 
 <script>
+import {mapState} from 'vuex';
 import "element-ui/lib/theme-chalk/index.css";
 export default {
   name: "Main",
   data() {
     return {};
   },
-  computed: {
-    user() {
-      return this.$store.state.user;
-    }
-  },
+  computed: mapState({
+      user:'user'
+    }),
   methods: {
     /**
      * to logout from page.

@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import {mapState} from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     user:undefined,
   },
-  getters:{
-    getName:state=>{
-      return state.user.name;
-    }
-  },
+  // getters:{
+  //   getName:state=>{
+  //     return state.user.name;
+  //   }
+  // },
   mutations: {
     login(state,payload){
       state.user=payload;
@@ -21,11 +21,11 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    login(context,payload){
-      context.commit('login',payload);
+    login({commit},payload){
+      commit('login',payload);
     },
-    logout(context){
-      context.commit('logout');
+    logout({commit}){
+      commit('logout');
     }
   },
   modules: {
