@@ -44,6 +44,7 @@
 
 
 <script>
+import axios from 'axios'
 export default {
   name: "Login",
   data() {
@@ -63,13 +64,18 @@ export default {
       this.$refs.form.validate(valid => {
         if (valid) {
           if (this.user.name == "admin" && this.user.code == "123") {
-            //验证成功
-            this.$notify({
-              title: "提示",
-              message: "登录成功！欢迎你：" + this.user.name
+            //验证成功 通过异步操作把所填
+            //用户信息传给全局全量state
+            this.$store.dispatch("login", this.user).then(() => {
+              this.$notify({
+                title: "提示",
+                message: "登录成功！欢迎你：" + this.user.name
+              });
+              console.log(this.$store.state);
+              //跳转回原始页面
+              this.$router.push({ path: "/" });
             });
-            //跳转回原始页面
-            this.$router.push({ path: "/" });
+            //账户或者用户名出错
           } else {
             this.$message({
               type: "error",
@@ -77,14 +83,28 @@ export default {
               showClose: true
             });
           }
-        }
-        else{
-             return false;
+        } else {
+          return false;
         }
       });
     },
     register: function() {
       this.$router.push({ path: "/" });
+      axios.get('http://jsonplaceholder.typicode.com/users')
+      .then(response=>{
+        console.log(response);
+        this.$message({
+          type:"success",
+          message:'axios获取端口数据成功！'
+        })
+        })
+      .catch(error=>{
+          console.log(error);
+          this.$message({
+            type:'warning',
+            message:'axios获取端口数据失败！'
+          })
+      })
     }
   }
 };
