@@ -2,7 +2,7 @@
     <div class="Main">
     <h1>主页面</h1>
     <div>
-        <button @click="toLogin">登录</button>
+        <button @click="toLogin">登录222</button>
     </div>
   </div>
 </template>
